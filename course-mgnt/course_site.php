@@ -1,3 +1,6 @@
+<script>
+    history.replaceState(null,null,'/lms/content');
+</script>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,10 +8,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Course Site</title>
         <style>
-            body {
+            #main-content {
+                margin-top: 5px;
                 font-family: 'Arial', sans-serif;
                 background-color: #f2f2f2;
-                margin: 20px;
+                padding: 30px;
+                border: black solid;
             }
 
             table {
@@ -70,9 +75,6 @@
 
             @media (min-width: 768px) {
                 /* Adjust styles for larger screens (desktop) */
-                body {
-                    margin: 40px;
-                }
 
                 table {
                     width: 80%;
@@ -94,12 +96,17 @@
             .delete-link:hover {
                 color: #c0392b;
             }
-    </style>
+        </style>
 </head>
 <body>
+<script>
+        function loadData(url){
+            window.location.replace(url);
+        }
+    </script>
     <?php
         $conn = mysqli_connect("localhost","root","","university");
-        $course = mysqli_real_escape_string($conn, $_POST["coursename"]);
+        $course = $argv[1];
         if($conn->connect_error){
             die("Connection Error");
         }
@@ -111,8 +118,6 @@
         }
         $conn->close();
     ?>
-    <a href='upload_course_file.html' class='upload-link'>Upload Files</a>
-    <a href='course_page.html' class='back-link'>Back to Course Page</a>
     <table>
         <thead>
             <tr>
@@ -130,8 +135,8 @@
                         echo "<tr>";
                         echo "<td>".$count."</td>";
                         echo "<td>".$row['filename']."</td>";
-                        echo "<td> <a href='../" . $row['folderpath'] . "/" . $row['filename'] . "' target='_blank'>view</a></td>";
-                        echo "<td> <a class='delete-link' href='delete_file.php?fileId=".$row['id']."'>delete</a></td>";
+                        echo "<td><a href='/file-serve/" . $row['folderpath'] .'/'. $row['filename'] . "' target='_blank'>view</a></td>";
+                        echo "<td> <a class='delete-link' href='/file-delete/".$row['id']."'>delete</a></td>";
                         echo "</tr>";
                         $count++;
                     }

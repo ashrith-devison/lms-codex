@@ -1,26 +1,39 @@
+<script>
+    history.replaceState(null,null,'/lms/content');
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #bbeff6;
             margin: 0;
+            border: solid;
+            display: flex;
+            flex-direction: column; /* Set the flex direction to column */
+            min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
         }
 
         header {
-            background-color: #3498db;
+            background-color: #3b3f52;
             color: #ffffff;
             text-align: center;
             padding: 20px;
+            border: solid;
         }
 
         nav {
-            background-color: #2ecc71;
+            background-color: #a9566d;
             padding: 10px;
+            width: 30px;
+            height: 100px;
+            border-radius: 6px;
         }
 
         ul {
@@ -28,179 +41,217 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: space-around;
+            flex-direction: column; /* Set the flex direction to column */
+            align-items: flex-start; /* Align items to the start (left) */
         }
 
         li {
             display: inline;
+            border: 1px solid white; /* Add a border to the bottom of each li */
+            padding: 5px; /* Add some padding to visually separate the text from the border */
+        }
+
+        /* Adjust the color and size of icons */
+        i.fas {
+            color: white; /* Set the color to white */
+            font-size: 18px; /* Adjust the size of icons */
         }
 
         a {
             text-decoration: none;
-            color: #ffffff;
+            color: #4f42bd;
             font-weight: bold;
-            padding: 10px;
-            border-radius: 5px;
             transition: background-color 0.3s;
         }
 
         a:hover {
-            background-color: #27ae60;
+            background-color: #68978b;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        textarea {
-            width: 100%;
-            height: 50px; /* Set the desired height */
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .todo-container {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 30px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 90px;
-            overflow-x: auto;
-        }
-
-        footer {
-            background-color: #333333;
-            color: #ffffff;
-            text-align: center;
-            padding: 10px;
-            position: relative;
-            margin-top: 20px; /* Add margin-top to create a gap */
-            width: 100%;
-        }
-
-
-        .form-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #ffffff;
-            border: 1px solid #3498db; /* Use a vibrant color for the border */
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        form {
-            display: grid;
-            gap: 10px;
-        }
-
-        button {
-            background-color: #3498db;
-            color: #ffffff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        .cancel {
-            background-color: #e74c3c;
-        }
-
-        .cancel:hover {
-            background-color: #c0392b;
-        }
-        .action-column {
-        width: 100px; /* Adjust the width as needed */
-        }
-        .update-form {
-            align-items: center;
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 5px; /* Adjust margin as needed */
-        }
-
-        .update-action-select {
-            padding: 8px;
-            border: 1px solid #ffffff; /* Use a vibrant color for the border */
-            border-radius: 5px;
-            color: black;
-            font-size: 14px;
-            margin-right: 5px;
-        }
-
-        .update-action-submit {
-            padding: 8px 15px;
-            background-color: #3498db; /* Use a vibrant color for the background */
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            align-items: center;
-        }
-    
-        .update-form select,
-        .update-form textarea,
-        .update-form input {
-            border: 1px solid #27ae60;
-            border-radius: 5px;
-            padding: 8px;
-            margin-right: 5px;
-            font-size: 14px;
-        }
-        @media screen and (max-width: 600px) {
-            .todo-container {
-                overflow-x: auto;
-            }
-
-            table {
-                font-size: 14px;
-            }
+        #content {
+            display: flex;
+            flex-direction: row; /* Set the flex direction to row */
+            justify-content: space-between;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Mayank Portal</h1>
+<header>
+        <h1>Welcome to Codex Portal</h1>
     </header> 
+<div id="content">
     <nav>
         <ul>
-            <li><a href="course-mgnt/upload_course_file.html">File Upload</a></li>
-            <li><a href="course-mgnt/course_page.html">Course Page</a></li>
-            <li><a href="resources/index.php">Resources</a></li>
-            <li><a href="#" onclick="openForm('addForm')">Add Task</a></li>
+            <li><a onclick='loadData("C:/wamp64/www/vit-lms-2.0/course-mgnt/upload_course_file.html","/lms/html/");'><i class="fas fa-file-upload"></i></a></li>
+            <li><a onclick='loadData("C:/wamp64/www/vit-lms-2.0/course-mgnt/course_page.html","/lms/html/");'><i class="fas fa-file"></i></a></li>
+            <li><a onclick='redirect("C:/wamp64/www/vit-lms-2.0/resources/index.html","/lms/html/");'><i class="fas fa-file-alt"></i></a></li>
         </ul>
     </nav>
+<div id = "main-content">
+<style>
+        
+    .todo-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 50px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 90px;
+        overflow-x: auto;
+        flex-grow: 1; /* Allow the main content to grow and fill available space */
+    }
 
-    <div class="todo-container">
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    textarea {
+        width: 100%;
+        height: 50px; /* Set the desired height */
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .todo-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 90px;
+        overflow-x: auto;
+    }
+
+
+    .form-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        border: 1px solid #3498db; /* Use a vibrant color for the border */
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        display: grid;
+        gap: 10px;
+    }
+
+    button {
+        background-color: #3498db;
+        color: #ffffff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    .cancel {
+        background-color: #e74c3c;
+    }
+
+    .cancel:hover {
+        background-color: #c0392b;
+    }
+    .action-column {
+    width: 100px; /* Adjust the width as needed */
+    }
+    .update-form {
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 5px; /* Adjust margin as needed */
+    }
+
+    .update-action-select {
+        padding: 8px;
+        border: 1px solid #ffffff; /* Use a vibrant color for the border */
+        border-radius: 5px;
+        color: black;
+        font-size: 14px;
+        margin-right: 5px;
+    }
+
+    .update-action-submit {
+        padding: 8px 15px;
+        background-color: #3498db; /* Use a vibrant color for the background */
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .update-form select,
+    .update-form textarea,
+    .update-form input {
+        border: 1px solid #27ae60;
+        border-radius: 5px;
+        padding: 8px;
+        margin-right: 5px;
+        font-size: 14px;
+    }
+    @media screen and (max-width: 600px) {
+        .todo-container {
+            overflow-x: auto;
+        }
+
+        table {
+            font-size: 14px;
+        }
+    }
+</style>
+<script>
+    function loadData(url,route){
+            console.log(url);
+            url = encodeURIComponent(url);
+            fetch(route+url).then(response => {
+                if(!response.ok){
+                    console.log('error in values');
+                }
+                console.log("Success");
+                return response.text();
+            }).then(data => {
+                document.getElementById('main-content').innerHTML = data;
+            })
+    }
+
+        function redirect(url){
+            url = encodeURIComponent(url);
+            window.location.replace('/lms/html/'+url);
+        }
+</script>
+<div class="todo-container">
         <h2>To-Do List</h2>
         <table>
             <thead>
@@ -253,11 +304,6 @@
             </tbody>
         </table>
     </div>
-
-    <footer>
-        <p>&copy; 2024 Mayank Mahajan, Research-Associate</p>
-        <p>Harvard Business School</p>
-    </footer>
 
     <div class="form-popup" id="editForm">
         <form action="to-do/edit_task.php" class="form-container" method="post" autocomplete="off">
@@ -356,7 +402,7 @@
             <button type="reset" onclick="closeForm('addForm')" class="cancel">Close</button>
         </form>
     </div>
-
+</div>
 <!-- JavaScript function to fill form fields for editing -->
 <script>
     function editTask(id, deadline, work, subject, remarks, action) {
@@ -389,6 +435,6 @@
         document.getElementById(formId).style.display = "none";
     }
 </script>
-
+<div>
 </body>
 </html>

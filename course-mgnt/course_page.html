@@ -1,3 +1,27 @@
+<script>
+    history.replaceState(null,null,'/lms/content');
+</script>
+<script>
+    function fetchData() {
+        const coursename = document.getElementById('coursename').value;
+        console.log(coursename);
+        fetch('/course-site', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ coursename }),
+        })
+        .then(response => response.text())
+        .then(responseData => {
+            document.getElementById('main-content').innerHTML = responseData;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle errors as needed
+        });
+    }
+</script>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,56 +29,14 @@
         <meta name="viewport" content="width=device-width initial-scale=1.0">
         <title>Course Page</title>
         <style>
-            body {
-                font-family: 'Arial', sans-serif;
-                background-color: #f4f4f4;
-                margin: 0;
-            }
-
-            header {
-                background-color: #3498db;
-                color: #ffffff;
-                text-align: center;
-                padding: 20px;
-            }
-
-            nav {
-                background-color: #2ecc71;
-                padding: 10px;
-            }
-
-            ul {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: space-around;
-            }
-
-            li {
-                display: inline;
-            }
-
-            a {
-                text-decoration: none;
-                color: #ffffff;
-                font-weight: bold;
-                padding: 10px;
-                border-radius: 5px;
-                transition: background-color 0.3s;
-            }
-
-            a:hover {
-                background-color: #27ae60;
-            }
 
             form {
                 background-color: #ffffff;
                 border-radius: 8px;
                 padding: 20px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                width: 80%;
-                max-width: 400px;
+                width: 500px;
+                max-width: 800px;
                 text-align: center;
                 margin: 20px auto; /* Added margin for better spacing */
             }
@@ -64,15 +46,24 @@
                 margin-bottom: 10px;
                 font-weight: bold;
                 color: #333333;
+                font-size: 18px;
             }
 
             select {
                 width: 100%;
-                padding: 10px;
+                padding: 14px; /* Adjusted padding for better proportion */
                 margin-bottom: 20px;
-                border: 1px solid #dddddd;
+                border: 1px solid #3498db; /* Added border color */
                 border-radius: 4px;
                 box-sizing: border-box;
+                appearance: none; /* Remove default styles on browsers */
+                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="%23333333"><path d="M7 10l5 5 5-5z" /></svg>'); /* Custom arrow icon */
+                background-position: right 10px top 50%;
+                background-repeat: no-repeat;
+                background-size: 18px;
+                background-color: #ffffff;
+                color: #333333;
+                font-size: 16px;
             }
 
             button {
@@ -98,45 +89,39 @@
                 bottom: 0;
                 width: 100%;
             }
-            @media (max-width: 768px) {
-                select {
-                    padding: 15px; 
-                    font-size: 16px; 
-                }
-                form {
-                    width: 90%; 
-                }
-            }
+            
         </style>
     </head>
-    <body>
-        <header>
-            <h1>Welcome to Mayank Portal</h1>
-        </header> 
-        <nav>
-            <ul>
-                <li><a href="upload_course_file.html">File Upload</a></li>
-                <li><a href="course_page.html">Course Page</a></li>
-                <li><a href="../resources/index.php">Resources</a></li>
-                <li><a href="../home.php">To-Do</a></li>
-            </ul>
-        </nav>    
-        <form method="post" action="course_site.php">
-            <label>Select Subject</label>
-            <select name="coursename" id="coursename" required>
-                <option></option>
-                <option value = "DAA_WIN_2023_24">Design and Analysis of Algorithms</option>
-                <option value = "OS_WIN_2023_24">Operating Systems</option>
-                <option value = "SWE_WIN_2023_24">Software Engineering</option>
-                <option value = "MRAM_WIN_2023_24">Marketing Research and Management</option>
-                <option value = "OP_WIN_2023_24">Operation Research</option>
-                <option value = "ECS_WIN_2023_24">ECS1001</option>
-            </select>   
-            <button type="submit" name="submit">Submit</button>
-        </form>
-        <footer>
-            <p>&copy; 2024 Mayank Mahajan, Research-Associate</p>
-            <p>Harvard Business School</p>
-        </footer>
+    <body>  
+        <form id="courseForm"  method="post">
+            <label>Course Page</label>
+            <select name="coursename" id="coursename">
+                <option selected disabled>Select a subject</option>
+                <option value="DAA_WIN_2023_24">Design and Analysis of Algorithms</option>
+                <option value="OS_WIN_2023_24">Operating Systems</option>
+                <option value="SWE_WIN_2023_24">Software Engineering</option>
+                <option value="MRAM_WIN_2023_24">Marketing Research and Management</option>
+                <option value="OP_WIN_2023_24">Operation Research</option>
+                <option value="ECS_WIN_2023_24">ECS1001</option>
+            </select>
+            <button type="button" onclick="
+            const coursename = document.getElementById('coursename').value;
+            console.log(coursename);
+            const requestBody = { coursename: coursename };
+            console.log('JSON object prepared:', requestBody);
+
+            fetch('/course-site', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody),
+            }).then(response=> response.text())
+            .then(data => {
+                document.getElementById('main-content').innerHTML = data;
+            })
+            " >Submit</button>
+        </form>  
+    
     </body>
-</html>
+    </html>

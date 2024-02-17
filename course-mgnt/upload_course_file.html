@@ -1,3 +1,6 @@
+<script>
+    history.replaceState(null,null,'/lms/content');
+</script>
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
@@ -5,58 +8,7 @@
         <meta name="viewport" content="width=device-width initial-scale=1.0">
         <title>Course Page Upload</title>
         <style>
-          body {
-              font-family: 'Arial', sans-serif;
-              background-color: #f4f4f4;
-              margin: 0;
-          }
 
-          header {
-              background-color: #3498db;
-              color: #ffffff;
-              text-align: center;
-              padding: 20px;
-          }
-
-          nav {
-              background-color: #2ecc71;
-              padding: 10px;
-          }
-
-          ul {
-              list-style: none;
-              margin: 0;
-              padding: 0;
-              display: flex;
-              justify-content: space-around;
-          }
-
-          li {
-              display: inline;
-          }
-
-          a {
-              text-decoration: none;
-              color: #ffffff;
-              font-weight: bold;
-              padding: 10px;
-              border-radius: 5px;
-              transition: background-color 0.3s;
-          }
-
-          a:hover {
-              background-color: #27ae60;
-          }
-
-          footer {
-              background-color: #333333;
-              color: #ffffff;
-              text-align: center;
-              padding: 10px;
-              position: fixed;
-              bottom: 0;
-              width: 100%;
-          }
           form {
                 background-color: #ffffff;
                 border-radius: 8px;
@@ -64,7 +16,6 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 margin: 20px auto; /* Center the form and add margin */
                 width: 80%; /* Adjust the width percentage as needed */
-                max-width: 400px; /* Set a max-width for larger screens */
                 text-align: center;
           }
 
@@ -119,46 +70,25 @@
               background-color: #45a049;
           }
 
-          @media (min-width: 769px) {
-              /* Styles for screens larger than 768px (desktop) */
-              form {
-                  width: 50%; /* Adjust the width percentage as needed */
-              }
-          }
         </style>
     </head>
     <body>
-      <header>
-        <h1>Welcome to Mayank Portal</h1>
-      </header> 
-      <nav>
-          <ul>
-              <li><a href="upload_course_file.html">File Upload</a></li>
-              <li><a href="course_page.html">Course Page</a></li>
-              <li><a href="../resources/index.php">Resources</a></li>
-              <li><a href="../home.php" onclick="openForm('addForm')">Add Task</a></li>
-          </ul>
-      </nav>
-      <form method="post" enctype="multipart/form-data" action="upload_course_file_back.php">
-          <h1 class="form-upload">Course File Upload</h1>
-          <label>Course Name :</label>
-          <select name="coursename" id="coursename" required>
-            <option></option>
-            <option value = "DAA_WIN_2023_24">Design and Analysis of Algorithms</option>
-            <option value = "OS_WIN_2023_24">Operating Systems</option>
-            <option value = "SWE_WIN_2023_24">Software Engineering</option>
-            <option value = "MRAM_WIN_2023_24">Marketing Research and Management</option>
-            <option value = "OP_WIN_2023_24">Operation Research</option>
-            <option value = "ECS_WIN_2023_24">ECS1001</option>
-          </select>
-          <label>Select File :</label>
-          <input type="file" name="pdffile" id="pdffile" required>
-          <button type="submit" name="submit">upload</button>
-          <button type="reset">clear</button>
-      </form>
-      <footer>
-        <p>&copy; 2024 Mayank Mahajan, Research-Associate</p>
-        <p>Harvard Business School</p>
-      </footer>
+    <form method="post" enctype="multipart/form-data" id="uploadForm" action="/upload-file">
+    <h1 class="form-upload">Course File Upload</h1>
+    <label>Course Name :</label>
+    <select name="coursename" id="coursename" required>
+        <option></option>
+        <option value="DAA_WIN_2023_24">Design and Analysis of Algorithms</option>
+        <option value="OS_WIN_2023_24">Operating Systems</option>
+        <option value="SWE_WIN_2023_24">Software Engineering</option>
+        <option value="MRAM_WIN_2023_24">Marketing Research and Management</option>
+        <option value="OP_WIN_2023_24">Operation Research</option>
+        <option value="ECS_WIN_2023_24">ECS1001</option>
+    </select>
+    <label>Select File :</label>
+    <input type="file" name="pdffile" id="pdffile" required>
+    <button type="submit" name="submit">upload</button>
+    <button type="reset">clear</button>
+</form>
     </body>
 </html>
